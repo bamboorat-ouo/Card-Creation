@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聲母介紹</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 30px 20px;
+            font-family: "Microsoft JhengHei", sans-serif;
+            background: #fffaf5;
+            color: #51445f;
+        }
+        .介紹容器 {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .介紹卡片 {
+            padding: 35px 25px;
+            border: 2px solid #e5daf8;
+            border-radius: 24px;
+            background: white;
+            box-shadow: 0 6px 20px rgba(100, 80, 130, 0.1);
+            text-align: center;
+        }
+
+        .頁面標題 {
+            margin-bottom: 25px;
+            color: #7056a8;
+            font-size: 28px;
+        }
+
+        .聲母 {
+            margin: 15px 0;
+            color: #8066b0;
+            font-size: 100px;
+            font-weight: bold;
+        }
+
+        .聲母名稱 {
+            margin-bottom: 25px;
+            color: #9075c9;
+            font-size: 20px;
+        }
+
+        .區塊標題 {
+            margin-top: 30px;
+            color: #8066b0;
+            font-size: 21px;
+        }
+
+        .例詞列表 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .例詞 {
+            min-width: 100px;
+            padding: 12px 18px;
+            border-radius: 14px;
+            background: #f5f0ff;
+            font-size: 18px;
+        }
+
+        .返回按鈕 {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 26px;
+            border-radius: 30px;
+            background: #e9defa;
+            color: #7056a8;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .返回按鈕:hover {
+            background: #d9c8f5;
+            transform: translateY(-2px);
+        }
+
+        .錯誤訊息 {
+            color: #b75d75;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 12px;
+            }
+
+            .介紹卡片 {
+                padding: 25px 15px;
+            }
+
+            .聲母 {
+                font-size: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="介紹容器">
+        <section class="介紹卡片" id="介紹內容">
+            <h1 class="頁面標題">🔤 聲母介紹</h1>
+            <p>正在載入聲母資料……</p>
+        </section>
+    </main>
+    <script>
+        // 聲母資料
+        const 聲母資料 = {
+            "ㄅ": {
+                說明: "發音時雙唇閉合，再放開氣流，屬於不送氣音。",
+                例詞: ["布丁", "白飯", "包子", "冰箱"]},
+            "ㄆ": {
+                說明: "發音時雙唇閉合，再放開氣流，會有較明顯的送氣。",
+                例詞: ["披薩", "蘋果", "葡萄", "皮包"]},
+            "ㄇ": {
+                說明: "發音時雙唇閉合，讓氣流從鼻腔通過。",
+                例詞: ["麻糬", "抹茶", "麵包", "帽子"]},
+            "ㄈ": {
+                說明: "上齒輕觸下唇，讓氣流摩擦而出。",
+                例詞: ["方法", "飛機", "風扇", "飯糰"]},
+            "ㄉ": {
+                說明: "舌尖抵住上齒齦附近，再放開氣流，屬於不送氣音。",
+                例詞: ["蛋糕", "豆腐", "電腦", "大衣"]},
+            "ㄊ": {
+                說明: "舌尖抵住上齒齦附近，再放開氣流，會有明顯送氣。",
+                例詞: ["糖果", "兔子", "天空", "湯圓"]},
+            "ㄋ": {
+                說明: "舌尖抵住上齒齦附近，讓氣流從鼻腔通過。",
+                例詞: ["牛奶", "南瓜", "泥土", "暖爐"]},
+            "ㄌ": {
+                說明: "舌尖接近上齒齦，讓氣流從舌頭兩側通過。",
+                例詞: ["蘿蔔", "拉麵", "禮物", "路燈"]},
+            "ㄍ": {
+                說明: "舌根抵住軟顎，再放開氣流，屬於不送氣音。",
+                例詞: ["蛋糕", "公園", "果汁", "工作"]},
+            "ㄎ": {
+                說明: "舌根抵住軟顎，再放開氣流，會有明顯送氣。",
+                例詞: ["咖啡", "可樂", "筷子", "恐龍"]},
+            "ㄏ": {
+                說明: "氣流經過聲門附近摩擦而出。",
+                例詞: ["漢堡", "紅茶", "花朵", "海洋"]},
+            "ㄐ": {
+                說明: "舌面前部接近硬顎，發出不送氣音。",
+                例詞: ["雞蛋", "橘子", "機器", "家庭"]},
+            "ㄑ": {
+                說明: "舌面前部接近硬顎，發出送氣音。",
+                例詞: ["汽車", "鉛筆", "青菜", "起司"]},
+            "ㄒ": {
+                說明: "舌面前部接近硬顎，讓氣流摩擦而出。",
+                例詞: ["西瓜", "香蕉", "星星", "洗手"]},
+            "ㄓ": {
+                說明: "舌尖向後翹起，發出不送氣音。",
+                例詞: ["桌子", "蜘蛛", "植物", "製作"]},
+            "ㄔ": {
+                說明: "舌尖向後翹起，發出送氣音。",
+                例詞: ["車子", "茶葉", "長城", "尺子"]},
+            "ㄕ": {
+                說明: "舌尖向後翹起，讓氣流摩擦而出。",
+                例詞: ["獅子", "書本", "水果", "手套"]},
+            "ㄖ": {
+                說明: "舌尖向後翹起，發出帶有摩擦特徵的音。",
+                例詞: ["日曆", "肉包", "熱狗", "人類"]},
+            "ㄗ": {
+                說明: "舌尖接近上齒背附近，發出不送氣音。",
+                例詞: ["桌子", "橘子", "竹子", "製作"]},
+            "ㄘ": {
+                說明: "舌尖接近上齒背附近，發出送氣音。",
+                例詞: ["蔥餅", "草莓", "刺蝟", "擦手"]},
+            "ㄙ": {
+                說明: "舌尖接近上齒背附近，讓氣流摩擦而出。",
+                例詞: ["披薩", "掃地", "森林", "司機"] }
+            };
+        // 取得網址參數
+        const 網址參數 = new URLSearchParams(window.location.search);
+        const 指定聲母 = 網址參數.get("聲母");
+
+        const 介紹內容 = document.getElementById("介紹內容");
+
+        // 沒有指定聲母，或指定的聲母不存在
+        if (!指定聲母 || !聲母資料[指定聲母]) {
+            介紹內容.innerHTML = `
+                <h1 class="頁面標題">⚠️ 找不到聲母</h1>
+                <p class="錯誤訊息">
+                    請確認網址是否包含正確的聲母參數。
+                </p>
+                <a class="返回按鈕" href="首頁.html">🏠 返回首頁</a>
+                <a class="返回按鈕" href="介紹全部聲母.html">🔤 查看全部聲母</a>
+            `;
+        } else {
+            const 資料 = 聲母資料[指定聲母];
+            介紹內容.innerHTML = `
+                <h1 class="頁面標題">🔤 聲母介紹</h1>
+                <div class="聲母">${指定聲母}</div>
+                <h2 class="區塊標題">📖 發音介紹</h2>
+                <p>${資料.說明}</p>
+
+                <h2 class="區塊標題">📝 相關詞語</h2>
+                <div class="例詞列表">
+                    ${資料.例詞.map(詞語 =>
+                        `<div class="例詞">${詞語}</div>`
+                    ).join("")}
+                </div>
+
+                <a class="返回按鈕" href="首頁.html">🏠 返回首頁</a>
+                <a class="返回按鈕" href="介紹全部聲母.html">🔤 查看全部聲母</a>
+            `;
+        }
+    </script>
+
+</body>
+</html>
