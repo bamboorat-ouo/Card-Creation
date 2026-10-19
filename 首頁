@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>學習ㄅㄆㄇ</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            background: #fffaf2;
+            color: #514b67;
+            overflow-x: hidden;
+        }
+
+        /* 背景裝飾 */
+
+        .背景 {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .圓形 {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .圓形一 {
+            width: 320px;
+            height: 320px;
+            background: #ffe4e1;
+            top: -100px;
+            left: -100px;
+        }
+
+        .圓形二 {
+            width: 400px;
+            height: 400px;
+            background: #e2f3ff;
+            right: -150px;
+            bottom: -100px;
+        }
+
+        .圓形三 {
+            width: 180px;
+            height: 180px;
+            background: #fff0bd;
+            top: 45%;
+            left: -90px;
+        }
+
+        /* 頂部標題 */
+
+        header {
+            text-align: center;
+            padding: 45px 20px 10px;
+        }
+
+        .網站標籤 {
+            display: inline-block;
+            padding: 8px 20px;
+            background: white;
+            border: 2px solid #eee5ff;
+            border-radius: 30px;
+            color: #9382c8;
+            font-size: 15px;
+            letter-spacing: 3px;
+        }
+
+        h1 {
+            margin: 25px 0 10px;
+            font-size: clamp(40px, 7vw, 76px);
+            font-weight: 900;
+            letter-spacing: 5px;
+            color: #7766b3;
+            text-shadow: 3px 4px 0 #e8defd;
+        }
+
+        .副標題 {
+            margin: 0;
+            color: #8f899f;
+            font-size: 18px;
+            letter-spacing: 3px;
+        }
+
+        /* 中央主視覺 */
+
+        main {
+            max-width: 1000px;
+            margin: 35px auto 0;
+            padding: 0 20px;
+        }
+
+        .主視覺 {
+            position: relative;
+            min-height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .注音展示區 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 30px 10px;
+        }
+
+        .注音卡片 {
+            width: 105px;
+            height: 135px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            border: 3px solid #f0eafa;
+            border-radius: 25px;
+            box-shadow: 0 8px 0 #e8e0f5;
+            font-size: 65px;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .注音卡片:nth-child(1) {
+            color: #f28b82;
+            transform: rotate(-8deg) translateY(12px);
+        }
+
+        .注音卡片:nth-child(2) {
+            color: #79a9e8;
+            transform: rotate(-3deg) translateY(-10px);
+        }
+
+        .注音卡片:nth-child(3) {
+            color: #8bbd94;
+            transform: rotate(4deg) translateY(8px);
+        }
+
+        .注音卡片:nth-child(4) {
+            color: #e8b45f;
+            transform: rotate(9deg) translateY(-12px);
+        }
+
+        .注音卡片:hover {
+            transform: translateY(-15px) rotate(0deg);
+        }
+
+        /* 裝飾文字 */
+
+        .裝飾文字 {
+            position: absolute;
+            font-size: 28px;
+            font-weight: bold;
+            color: #b9addd;
+            user-select: none;
+        }
+
+        .裝飾文字一 {
+            top: 15px;
+            left: 10%;
+            transform: rotate(-15deg);
+        }
+
+        .裝飾文字二 {
+            top: 40px;
+            right: 10%;
+            transform: rotate(15deg);
+        }
+
+        .裝飾文字三 {
+            bottom: 10px;
+            left: 15%;
+            transform: rotate(10deg);
+        }
+
+        .裝飾文字四 {
+            bottom: 20px;
+            right: 15%;
+            transform: rotate(-12deg);
+        }
+
+        /* 介紹文字 */
+
+        .介紹區 {
+            text-align: center;
+            margin: 10px auto 20px;
+            padding: 20px;
+        }
+
+        .介紹標題 {
+            font-size: 25px;
+            color: #7766b3;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .介紹內容 {
+            margin-top: 12px;
+            color: #8f899f;
+            font-size: 16px;
+            line-height: 2;
+            letter-spacing: 1px;
+        }
+
+        /* 首頁按鈕 */
+
+        .按鈕區 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 25px auto 45px;
+        }
+
+        .首頁按鈕 {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 210px;
+            min-height: 65px;
+            padding: 16px 30px;
+            border: 3px solid #e8defd;
+            border-radius: 20px;
+            background: white;
+            color: #7766b3;
+            box-shadow: 0 7px 0 #e8defd;
+            font-size: 21px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .首頁按鈕:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 11px 0 #e8defd;
+        }
+
+        .首頁按鈕:active {
+            transform: translateY(4px);
+            box-shadow: 0 3px 0 #e8defd;
+        }
+
+        .玩法按鈕 {
+            border-color: #f8d9d5;
+            color: #d77d78;
+            box-shadow: 0 7px 0 #f8d9d5;
+        }
+
+        .玩法按鈕:hover {
+            box-shadow: 0 11px 0 #f8d9d5;
+        }
+
+        .玩法按鈕:active {
+            box-shadow: 0 3px 0 #f8d9d5;
+        }
+
+        /* 頁尾 */
+
+        footer {
+            margin-top: 25px;
+            padding: 25px 15px;
+            text-align: center;
+            color: #aaa2bb;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+        /* 手機版 */
+
+        @media (max-width: 600px) {
+            header {
+                padding-top: 35px;
+            }
+
+            .副標題 {
+                font-size: 15px;
+                letter-spacing: 1px;
+            }
+
+            .主視覺 {
+                min-height: 250px;
+            }
+
+            .注音展示區 {
+                gap: 9px;
+            }
+
+            .注音卡片 {
+                width: 65px;
+                height: 90px;
+                border-radius: 17px;
+                font-size: 42px;
+                border-width: 2px;
+                box-shadow: 0 5px 0 #e8e0f5;
+            }
+
+            .裝飾文字 {
+                font-size: 20px;
+            }
+
+            .介紹標題 {
+                font-size: 21px;
+            }
+
+            .介紹內容 {
+                font-size: 14px;
+            }
+
+            .按鈕區 {
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            .首頁按鈕 {
+                width: 100%;
+                max-width: 300px;
+                font-size: 19px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="背景">
+        <div class="圓形 圓形一"></div>
+        <div class="圓形 圓形二"></div>
+        <div class="圓形 圓形三"></div>
+    </div>
+
+    <header>
+
+        <div class="網站標籤">
+            ✦ 注音探索樂園 ✦
+        </div>
+
+        <h1>學習ㄅㄆㄇ</h1>
+
+        <p class="副標題">
+            一起探索注音的奇妙世界！
+        </p>
+
+    </header>
+
+    <main>
+
+        <section class="主視覺">
+
+            <div class="裝飾文字 裝飾文字一">ㄚ！</div>
+            <div class="裝飾文字 裝飾文字二">✦</div>
+            <div class="裝飾文字 裝飾文字三">♪</div>
+            <div class="裝飾文字 裝飾文字四">★</div>
+
+            <div class="注音展示區">
+                <div class="注音卡片">ㄅ</div>
+                <div class="注音卡片">ㄆ</div>
+                <div class="注音卡片">ㄇ</div>
+                <div class="注音卡片">ㄈ</div>
+            </div>
+
+        </section>
+
+        <section class="介紹區">
+
+            <div class="介紹標題">
+                每個注音，都是一場新冒險！
+            </div>
+
+            <div class="介紹內容">
+                從認識聲母開始，慢慢熟悉每個聲音。<br>
+                準備好探索注音的世界了嗎？
+            </div>
+
+        </section>
+
+        <nav class="按鈕區">
+            <a class="首頁按鈕 玩法按鈕" href="玩法介紹.html">📖 玩法介紹</a>
+            <a class="首頁按鈕" href="介紹全部聲母.html">🔤 聲母介紹</a>
+            <a class="首頁按鈕" href="聲母選擇.html">🧩 聲母配對造詞</a>
+        </nav>
+
+    </main>
+
+    <footer>
+        LEARN BOPOMOFO · DISCOVER THE WORLD
+    </footer>
+
+</body>
+
+</html>
