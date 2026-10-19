@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聲母介紹主頁</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            padding: 35px 20px;
+            font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            color: #51445f;
+            background: linear-gradient(135deg, #fff8e8, #f1eaff);
+        }
+
+        .主容器 {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 12px;
+            color: #7056a8;
+            font-size: 36px;
+        }
+
+        header p {
+            color: #887a98;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .介紹卡片 {
+            margin-bottom: 25px;
+            padding: 28px 20px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.88);
+            box-shadow: 0 6px 20px rgba(100, 80, 130, 0.10);
+            text-align: center;
+        }
+
+        .介紹標題 {
+            margin-top: 0;
+            color: #8066b0;
+            font-size: 22px;
+        }
+
+        #選中的聲母 {
+            margin: 15px 0;
+            color: #7056a8;
+            font-size: 80px;
+            font-weight: bold;
+        }
+
+        #發音提示 {
+            margin: 10px 0;
+            color: #8c78ad;
+            font-size: 18px;
+        }
+
+        #聲母說明 {
+            max-width: 600px;
+            margin: 15px auto 0;
+            color: #655a70;
+            font-size: 17px;
+            line-height: 2;
+        }
+
+        .例字區 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .例字卡片 {
+            min-width: 100px;
+            padding: 15px 18px;
+            border: 2px solid #e5daf8;
+            border-radius: 15px;
+            background: #fff;
+            color: #65527e;
+            font-size: 22px;
+        }
+
+        .例字注音 {
+            display: block;
+            margin-top: 8px;
+            color: #9b8bad;
+            font-size: 14px;
+            letter-spacing: 3px;
+            line-height: 1.8;
+        }
+        .選擇區 {
+            margin-bottom: 25px;
+            padding: 25px 20px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.88);
+            box-shadow: 0 6px 20px rgba(100, 80, 130, 0.10);
+        }
+
+        .選擇標題 {
+            margin-top: 0;
+            color: #8066b0;
+            text-align: center;
+        }
+
+        .聲母列表 {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .聲母按鈕 {
+            padding: 16px 5px;
+            border: 2px solid #e5daf8;
+            border-radius: 14px;
+            background: #fff;
+            color: #7056a8;
+            font-size: 24px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .聲母按鈕:hover {
+            transform: translateY(-3px);
+            border-color: #b9a0ed;
+            background: #f4edff;
+        }
+
+        .聲母按鈕.已選擇 {
+            border-color: #9075c9;
+            background: #9075c9;
+            color: white;
+        }
+
+        .底部按鈕區 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .底部按鈕 {
+            padding: 13px 24px;
+            border: none;
+            border-radius: 14px;
+            background: #9075c9;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .底部按鈕:hover {
+            transform: translateY(-2px);
+            background: #795db5;
+        }
+
+        .返回按鈕 {
+            border: 2px solid #d8c9f1;
+            background: #fff;
+            color: #7056a8;
+        }
+
+        .返回按鈕:hover {
+            background: #eee6ff;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 25px 12px;
+            }
+
+            h1 {
+                font-size: 29px;
+            }
+
+            .聲母列表 {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 9px;
+            }
+
+            .聲母按鈕 {
+                padding: 13px 4px;
+                font-size: 22px;
+            }
+
+            #選中的聲母 {
+                font-size: 65px;
+            }
+
+            .介紹卡片,
+            .選擇區 {
+                padding: 22px 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="主容器">
+
+        <header>
+            <h1>📚 聲母介紹</h1>
+            <p>
+                認識注音符號中的聲母！<br>
+                點擊下方的聲母，就能查看它的介紹與例字。
+            </p>
+        </header>
+
+        <section class="介紹卡片">
+
+            <h2 class="介紹標題">目前介紹的聲母</h2>
+
+            <div id="選中的聲母">ㄅ</div>
+
+            <div id="發音提示"></div>
+
+            <p id="聲母說明"></p>
+
+            <h2 class="介紹標題">例字</h2>
+
+            <div id="例字區" class="例字區"></div>
+
+        </section>
+        <section class="選擇區" id="選擇區">
+
+            <h2 class="選擇標題">選擇想認識的聲母</h2>
+
+            <div id="聲母列表" class="聲母列表"></div>
+
+            <div class="底部按鈕區">
+                <button class="底部按鈕" onclick="前往單獨介紹()">
+                    📖 查看單獨介紹
+                </button>
+            </div>
+   
+        <div class="底部按鈕區">
+
+            <button class="底部按鈕 返回按鈕" onclick="回首頁()">
+                🏠 返回首頁
+            </button>
+
+        </div>
+
+    </main>
+
+    <script>
+
+        // 聲母介紹資料
+
+        const 聲母資料 = {
+
+            "ㄅ": {
+                發音提示: "發音提示：雙唇閉合後送出氣流。",
+                說明: "ㄅ 是注音符號中的聲母。發音時，雙唇先閉合，再放開。它是不送氣音。",
+                例字: [
+                    {文字: "爸爸", 注音: "ㄅㄚˋ ㄅㄚ˙"},
+                    {文字: "包子", 注音: "ㄅㄠ ㄗ˙"},
+                    {文字: "白色", 注音: "ㄅㄞˊ ㄙㄜˋ"}
+                ]
+            },
+
+            "ㄆ": {
+                發音提示: "發音提示：雙唇閉合後，明顯送出氣流。",
+                說明: "ㄆ 的發音方式與 ㄅ 相似，但送出的氣流較強，屬於送氣音。",
+                例字: [
+                    {文字: "跑步", 注音: "ㄆㄠˇ ㄅㄨˋ"},
+                    {文字: "蘋果", 注音: "ㄆㄧㄥˊ ㄍㄨㄛˇ"},
+                    {文字: "朋友", 注音: "ㄆㄥˊ ㄧㄡˇ"}
+                ]
+            },
+
+            "ㄇ": {
+                發音提示: "發音提示：雙唇閉合，讓氣流從鼻腔通過。",
+                說明: "ㄇ 是鼻音。發音時雙唇閉合，聲音主要從鼻腔傳出。",
+                例字: [
+                    {文字: "媽媽", 注音: "ㄇㄚ ㄇㄚ"},
+                    {文字: "帽子", 注音: "ㄇㄠˋ ㄗ˙"},
+                    {文字: "米飯", 注音: "ㄇㄧˇ ㄈㄢˋ"}
+                ]
+            },
+
+            "ㄈ": {
+                發音提示: "發音提示：上排牙齒輕觸下嘴唇，讓氣流通過。",
+                說明: "ㄈ 是唇齒音。發音時，上排牙齒接近下嘴唇，讓氣流摩擦而出。",
+                例字: [
+                    {文字: "方法", 注音: "ㄈㄤ ㄈㄚˇ"},
+                    {文字: "飛機", 注音: "ㄈㄟ ㄐㄧ"},
+                    {文字: "風箏", 注音: "ㄈㄥ ㄓㄥ"}
+                ]
+            },
+
+            "ㄉ": {
+                發音提示: "發音提示：舌尖抵住上齒齦附近，再放開。",
+                說明: "ㄉ 是舌尖音。發音時，舌尖先抵住上齒齦附近，再放開，是不送氣音。",
+                例字: [
+                    {文字: "大人", 注音: "ㄉㄚˋ ㄖㄣˊ"},
+                    {文字: "電腦", 注音: "ㄉㄧㄢˋ ㄋㄠˇ"},
+                    {文字: "蛋糕", 注音: "ㄉㄢˋ ㄍㄠ"}
+                ]
+            },
+
+            "ㄊ": {
+                發音提示: "發音提示：舌尖抵住上齒齦附近，再送出較強氣流。",
+                說明: "ㄊ 的發音位置與 ㄉ 相似，但會送出較強的氣流。",
+                例字: [
+                    {文字: "兔子", 注音: "ㄊㄨˋ ㄗ˙"},
+                    {文字: "天空", 注音: "ㄊㄧㄢ ㄎㄨㄥ"},
+                    {文字: "糖果", 注音: "ㄊㄤˊ ㄍㄨㄛˇ"}
+                ]
+            },
+
+            "ㄋ": {
+                發音提示: "發音提示：舌尖抵住上齒齦附近，氣流從鼻腔通過。",
+                說明: "ㄋ 是鼻音。發音時舌尖抵住上齒齦附近，聲音主要從鼻腔傳出。",
+                例字: [
+                    {文字: "牛奶", 注音: "ㄋㄧㄡˊ ㄋㄞˇ"},
+                    {文字: "女孩", 注音: "ㄋㄩˇ ㄏㄞˊ"},
+                    {文字: "暖和", 注音: "ㄋㄨㄢˇ ㄏㄨㄛ˙"}
+                ]
+            },
+
+            "ㄌ": {
+                發音提示: "發音提示：舌尖接近上齒齦，氣流從舌頭兩側通過。",
+                說明: "ㄌ 是舌尖邊音。發音時，舌尖接近上齒齦，氣流從舌頭兩側通過。",
+                例字: [
+                    {文字: "老師", 注音: "ㄌㄠˇ ㄕ"},
+                    {文字: "蘭花", 注音: "ㄌㄢˊ ㄏㄨㄚ"},
+                    {文字: "路口", 注音: "ㄌㄨˋ ㄎㄡˇ"}
+                ]
+            },
+
+            "ㄍ": {
+                發音提示: "發音提示：舌根抵住軟顎附近，再放開。",
+                說明: "ㄍ 是舌根音。發音時舌根先形成阻礙，再放開，是不送氣音。",
+                例字: [
+                    {文字: "哥哥", 注音: "ㄍㄜ ㄍㄜ"},
+                    {文字: "公園", 注音: "ㄍㄨㄥ ㄩㄢˊ"},
+                    {文字: "狗狗", 注音: "ㄍㄡˇ ㄍㄡˇ"}
+                ]
+            },
+
+            "ㄎ": {
+                發音提示: "發音提示：舌根形成阻礙，再送出較強氣流。",
+                說明: "ㄎ 的發音位置與 ㄍ 相似，但送出的氣流較強。",
+                例字: [
+                    {文字: "看書", 注音: "ㄎㄢˋ ㄕㄨ"},
+                    {文字: "可愛", 注音: "ㄎㄜˇ ㄞˋ"},
+                    {文字: "口袋", 注音: "ㄎㄡˇ ㄉㄞˋ"}
+                ]
+            },
+
+            "ㄏ": {
+                發音提示: "發音提示：氣流經過舌根與軟顎附近的狹窄處。",
+                說明: "ㄏ 是舌根摩擦音，發音時氣流通過舌根附近的狹窄處。",
+                例字: [
+                    {文字: "喝水", 注音: "ㄏㄜ ㄕㄨㄟˇ"},
+                    {文字: "花朵", 注音: "ㄏㄨㄚ ㄉㄨㄛˇ"},
+                    {文字: "黑色", 注音: "ㄏㄟ ㄙㄜˋ"}
+                ]
+            },
+
+            "ㄐ": {
+                發音提示: "發音提示：舌面前部接近硬顎，形成阻礙。",
+                說明: "ㄐ 是舌面音，發音時舌面前部接近硬顎。它通常與 ㄧ 或 ㄩ 等韻母搭配。",
+                例字: [
+                    {文字: "雞蛋", 注音: "ㄐㄧ ㄉㄢˋ"},
+                    {文字: "家人", 注音: "ㄐㄧㄚ ㄖㄣˊ"},
+                    {文字: "金魚", 注音: "ㄐㄧㄣ ㄩˊ"}
+                ]
+            },
+
+            "ㄑ": {
+                發音提示: "發音提示：舌面前部接近硬顎，並送出較強氣流。",
+                說明: "ㄑ 的發音位置與 ㄐ 相似，但送氣較強。",
+                例字: [
+                    {文字: "汽車", 注音: "ㄑㄧˋ ㄔㄜ"},
+                    {文字: "鉛筆", 注音: "ㄑㄧㄢ ㄅㄧˇ"},
+                    {文字: "氣球", 注音: "ㄑㄧˋ ㄑㄧㄡˊ"}
+                ]
+            },
+
+            "ㄒ": {
+                發音提示: "發音提示：舌面前部靠近硬顎，讓氣流摩擦通過。",
+                說明: "ㄒ 是舌面摩擦音，發音時舌面前部接近硬顎，形成摩擦。",
+                例字: [
+                    {文字: "香蕉", 注音: "ㄒㄧㄤ ㄐㄧㄠ"},
+                    {文字: "星星", 注音: "ㄒㄧㄥ ㄒㄧㄥ"},
+                    {文字: "小狗", 注音: "ㄒㄧㄠˇ ㄍㄡˇ"}
+                ]
+            },
+
+            "ㄓ": {
+                發音提示: "發音提示：舌尖稍微翹起，接近硬顎前部。",
+                說明: "ㄓ 是翹舌音。發音時舌尖稍微翹起，接近硬顎前部。",
+                例字: [
+                    {文字: "蜘蛛", 注音: "ㄓ ㄓㄨ"},
+                    {文字: "桌子", 注音: "ㄓㄨㄛ ㄗ˙"},
+                    {文字: "紙張", 注音: "ㄓˇ ㄓㄤ"}
+                ]
+            },
+
+            "ㄔ": {
+                發音提示: "發音提示：舌尖稍微翹起，並送出較強氣流。",
+                說明: "ㄔ 與 ㄓ 的發音位置相近，但送氣較強。",
+                例字: [
+                    {文字: "吃飯", 注音: "ㄔ ㄈㄢˋ"},
+                    {文字: "長大", 注音: "ㄔㄤˊ ㄉㄚˋ"},
+                    {文字: "車子", 注音: "ㄔㄜ ㄗ˙"}
+                ]
+            },
+
+            "ㄕ": {
+                發音提示: "發音提示：舌尖稍微翹起，讓氣流摩擦通過。",
+                說明: "ㄕ 是翹舌摩擦音。發音時舌尖稍微翹起，氣流經過舌尖與口腔前部的狹窄處。",
+                例字: [
+                    {文字: "書本", 注音: "ㄕㄨ ㄅㄣˇ"},
+                    {文字: "水果", 注音: "ㄕㄨㄟˇ ㄍㄨㄛˇ"},
+                    {文字: "山上", 注音: "ㄕㄢ ㄕㄤˋ"}
+                ]
+            },
+
+            "ㄖ": {
+                發音提示: "發音提示：舌尖稍微翹起，接近硬顎前部。",
+                說明: "ㄖ 是翹舌音，發音位置與 ㄓ、ㄔ、ㄕ 相近，但發音方式不同。",
+                例字: [
+                    {文字: "日月", 注音: "ㄖˋ ㄩㄝˋ"},
+                    {文字: "熱水", 注音: "ㄖㄜˋ ㄕㄨㄟˇ"},
+                    {文字: "認真", 注音: "ㄖㄣˋ ㄓㄣ"}
+                ]
+            },
+
+            "ㄗ": {
+                發音提示: "發音提示：舌尖接近上齒齦，形成較窄的通道。",
+                說明: "ㄗ 是舌尖前音，發音時舌尖接近上齒齦，形成不送氣的塞擦音。",
+                例字: [
+                    {文字: "自己", 注音: "ㄗˋ ㄐㄧˇ"},
+                    {文字: "早上", 注音: "ㄗㄠˇ ㄕㄤˋ"},
+                    {文字: "桌子", 注音: "ㄓㄨㄛ ㄗ˙"}
+                ]
+            },
+
+            "ㄘ": {
+                發音提示: "發音提示：舌尖接近上齒齦，並送出較強氣流。",
+                說明: "ㄘ 與 ㄗ 的發音位置相近，但送氣較強。",
+                例字: [
+                    {文字: "擦手", 注音: "ㄘㄚ ㄕㄡˇ"},
+                    {文字: "草地", 注音: "ㄘㄠˇ ㄉㄧˋ"},
+                    {文字: "彩色", 注音: "ㄘㄞˇ ㄙㄜˋ"}
+                ]
+            },
+
+            "ㄙ": {
+                發音提示: "發音提示：舌尖接近上齒齦，讓氣流摩擦通過。",
+                說明: "ㄙ 是舌尖摩擦音，發音時氣流通過舌尖與上齒齦附近的狹窄處。",
+                例字: [
+                    {文字: "三明治", 注音: "ㄙㄢ ㄇㄧㄥˊ ㄓˋ"},
+                    {文字: "森林", 注音: "ㄙㄣ ㄌㄧㄣˊ"},
+                    {文字: "四季", 注音: "ㄙˋ ㄐㄧˋ"}
+                ]
+            }
+
+        };
+
+
+        // 網站使用的聲母
+
+        const 聲母列表 = [
+            "ㄅ", "ㄆ", "ㄇ", "ㄈ", "ㄉ",
+            "ㄊ", "ㄋ", "ㄌ", "ㄍ", "ㄎ",
+            "ㄏ", "ㄐ", "ㄑ", "ㄒ", "ㄓ",
+            "ㄔ", "ㄕ", "ㄖ", "ㄗ", "ㄘ", "ㄙ"
+        ];
+
+
+        // 建立聲母選擇按鈕
+
+        const 聲母列表區 = document.getElementById("聲母列表");
+
+        聲母列表.forEach(function(聲母) {
+
+            const 按鈕 = document.createElement("button");
+
+            按鈕.className = "聲母按鈕";
+            按鈕.textContent = 聲母;
+
+            按鈕.addEventListener("click", function() {
+                顯示介紹(聲母);
+            });
+
+            聲母列表區.appendChild(按鈕);
+
+        });
+
+
+        // 顯示指定聲母的介紹
+
+        function 顯示介紹(聲母) {
+
+            const 資料 = 聲母資料[聲母];
+
+            document.getElementById("選中的聲母").textContent = 聲母;
+
+            document.getElementById("發音提示").textContent =
+                資料.發音提示;
+
+            document.getElementById("聲母說明").textContent =
+                資料.說明;
+
+            const 例字區 = document.getElementById("例字區");
+
+            例字區.innerHTML = "";
+
+            資料.例字.forEach(function(例字資料) {
+
+                const 卡片 = document.createElement("div");
+
+                卡片.className = "例字卡片";
+
+                const 文字 = document.createElement("div");
+                文字.textContent = 例字資料.文字;
+
+                const 注音 = document.createElement("span");
+                注音.className = "例字注音";
+                注音.textContent = 例字資料.注音.replace(/ /g, "　");
+
+                卡片.appendChild(文字);
+                卡片.appendChild(注音);
+
+                例字區.appendChild(卡片);
+
+            });
+
+
+            // 更新目前選中的按鈕
+
+            document.querySelectorAll(".聲母按鈕").forEach(function(按鈕) {
+
+                按鈕.classList.toggle(
+                    "已選擇",
+                    按鈕.textContent === 聲母
+                );
+
+            });
+
+        }
+
+
+        // 返回首頁
+
+        function 回首頁() {
+            window.location.href = "首頁.html";
+        }
+
+        // 前往單獨聲母介紹頁
+
+        function 前往單獨介紹() {
+
+            const 聲母 = document.getElementById("選中的聲母").textContent;
+
+            window.location.href =
+                "介紹單一聲母.html?聲母=" + encodeURIComponent(聲母);
+
+        }
+        // 預設介紹第一個聲母
+
+// 讀取網址參數
+
+const 網址參數 = new URLSearchParams(window.location.search);
+const 指定聲母 = 網址參數.get("聲母");
+
+// 判斷顯示模式
+
+if (指定聲母 !== null) {
+
+    // 單一聲母模式
+
+    if (聲母資料[指定聲母]) {
+
+        顯示介紹(指定聲母);
+
+        // 隱藏聲母選擇區
+        document.getElementById("選擇區").style.display = "none";
+
+    } else {
+
+        // 參數不存在或不是有效聲母
+        document.getElementById("選中的聲母").textContent = "？";
+        document.getElementById("發音提示").textContent = "";
+        document.getElementById("聲母說明").textContent =
+            "找不到這個聲母，請確認網址中的聲母參數。";
+
+        document.getElementById("例字區").innerHTML = "";
+
+        document.getElementById("選擇區").style.display = "none";
+
+    }
+
+} else {
+
+    // 全部聲母模式
+
+    document.getElementById("選擇區").style.display = "block";
+
+    顯示介紹("ㄅ");
+
+}
+
+    </script>
+
+</body>
+
+</html>
