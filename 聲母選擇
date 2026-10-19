@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>聲母配對造詞</title>
+
+    <style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 40px 20px;
+    text-align: center;
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    background: linear-gradient(135deg, #fff8e8, #f1eaff);
+    color: #51445f;
+}
+
+h1 {
+    margin-bottom: 12px;
+    font-size: 38px;
+    color: #7056a8;
+}
+
+.說明 {
+    margin-bottom: 35px;
+    color: #82758f;
+    font-size: 17px;
+}
+
+.聲母卡區 {
+    max-width: 850px;
+    margin: 25px auto;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 22px;
+    box-shadow: 0 6px 18px rgba(100, 80, 130, 0.10);
+}
+
+h2 {
+    margin-top: 0;
+    color: #8066b0;
+    font-size: 24px;
+}
+
+button {
+    margin: 6px;
+    min-width: 58px;
+    padding: 12px 18px;
+    border: 2px solid #e5daf8;
+    border-radius: 14px;
+    background: #ffffff;
+    color: #65527e;
+    font-size: 21px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    border-color: #b9a0ed;
+    background: #f4edff;
+}
+
+.選中 {
+    background: #cbb8f5;
+    border-color: #9273d0;
+    color: #40305d;
+    box-shadow: 0 3px 10px rgba(120, 90, 180, 0.2);
+}
+
+.功能按鈕區 {
+    margin-top: 30px;
+}
+
+.功能按鈕 {
+    min-width: 150px;
+    padding: 13px 24px;
+    border: none;
+    border-radius: 15px;
+    background: #9075c9;
+    color: white;
+    font-size: 19px;
+}
+
+.功能按鈕:hover {
+    background: #795db5;
+}
+
+.返回按鈕 {
+    background: #ffffff;
+    color: #7056a8;
+    border: 2px solid #d8c9f1;
+}
+
+.功能按鈕.返回按鈕:hover {
+    background: #eee6ff;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 25px 12px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .聲母卡區 {
+        padding: 18px 10px;
+    }
+
+    button {
+        min-width: 48px;
+        padding: 10px 13px;
+        font-size: 19px;
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    <h1>聲母配對造詞</h1>
+<p class="說明">選擇兩個聲母，探索有趣的中文詞語！</p>
+<div class="聲母卡區">
+    <h2>🎴 第一個聲母</h2>
+    <div id="第一個聲母區"></div>
+</div>
+
+
+<div class="聲母卡區">
+    <h2>🎴 第二個聲母</h2>
+    <div id="第二個聲母區"></div>
+</div>
+    <br>
+
+<div class="功能按鈕區">
+    <button class="功能按鈕" onclick="開始()">🔍 查詢詞語</button>
+
+    <button class="功能按鈕 返回按鈕"
+            onclick="location.href='首頁.html'">
+        🏠 返回首頁
+    </button>
+</div>
+
+    <script>
+
+
+        const 第一個聲母列表 = [
+            "ㄅ", "ㄆ", "ㄇ", "ㄈ", "ㄉ"
+        ];
+
+        const 第二個聲母列表 = [
+            "ㄅ", "ㄆ", "ㄇ", "ㄈ", "ㄉ",
+            "ㄊ", "ㄋ", "ㄌ", "ㄍ", "ㄎ",
+            "ㄏ", "ㄐ", "ㄑ", "ㄒ", "ㄓ",
+            "ㄔ", "ㄕ", "ㄖ", "ㄗ", "ㄘ",
+            "ㄙ"
+        ];
+
+        let 第一個聲母 = "";
+        let 第二個聲母 = "";
+
+
+            function 建立聲母按鈕() {
+
+        let 第一區 = document.getElementById("第一個聲母區");
+        let 第二區 = document.getElementById("第二個聲母區");
+
+
+        // 第一個聲母：只有 ㄅㄆㄇㄈㄉ
+
+        第一個聲母列表.forEach(function(聲音) {
+
+            let 按鈕1 = document.createElement("button");
+
+            按鈕1.textContent = 聲音;
+
+            按鈕1.onclick = function() {
+
+                第一個聲母 = 聲音;
+
+                document.querySelectorAll("#第一個聲母區 button")
+                    .forEach(function(按鈕) {
+                        按鈕.classList.remove("選中");
+                    });
+
+                按鈕1.classList.add("選中");
+            };
+
+            第一區.appendChild(按鈕1);
+        });
+
+
+        // 第二個聲母：全部 21 個
+
+        第二個聲母列表.forEach(function(聲音) {
+
+            let 按鈕2 = document.createElement("button");
+
+            按鈕2.textContent = 聲音;
+
+            按鈕2.onclick = function() {
+
+                第二個聲母 = 聲音;
+
+                document.querySelectorAll("#第二個聲母區 button")
+                    .forEach(function(按鈕) {
+                        按鈕.classList.remove("選中");
+                    });
+
+                按鈕2.classList.add("選中");
+            };
+
+            第二區.appendChild(按鈕2);
+        });
+    }
+
+
+        function 開始() {
+
+            if (第一個聲母 === "" || 第二個聲母 === "") {
+
+                alert("請選擇兩個聲母");
+
+                return;
+            }
+
+
+            if (第一個聲母 === 第二個聲母) {
+
+                alert("請選擇不同的聲母");
+
+                return;
+            }
+
+
+            window.location.href =
+                "聲母配對造詞.html?第一個聲母=" + encodeURIComponent(第一個聲母) +
+                "&第二個聲母=" + encodeURIComponent(第二個聲母);
+
+        }
+
+
+        建立聲母按鈕();
+
+    </script>
+
+</body>
+
+</html>
