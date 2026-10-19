@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>遊戲玩法介紹</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #fffaf5;
+            font-family: "Microsoft JhengHei", sans-serif;
+            color: #51445f;
+        }
+
+        .玩法介紹 {
+            max-width: 900px;
+            margin: 30px auto;
+            color: #51445f;
+        }
+
+        .玩法介紹 > h2 {
+            margin-bottom: 25px;
+            color: #7056a8;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        .玩法卡片 {
+            margin-bottom: 22px;
+            padding: 25px;
+            border: 2px solid #e5daf8;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 6px 20px rgba(100, 80, 130, 0.1);
+            line-height: 1.9;
+        }
+
+        .玩法卡片 h3 {
+            margin-top: 0;
+            color: #8066b0;
+            font-size: 23px;
+        }
+
+        .玩法卡片 p {
+            font-size: 16px;
+        }
+
+        .玩法範例 {
+            margin-top: 18px;
+            padding: 12px 18px;
+            border-radius: 12px;
+            background: #f5f0ff;
+        }
+
+        .玩法範例 p {
+            margin: 8px 0;
+        }
+
+        .玩法提示 {
+            margin-bottom: 0;
+            color: #9075c9;
+            font-weight: bold;
+        }
+
+        /* 返回首頁按鈕 */
+        .返回首頁區 {
+            margin: 35px auto;
+            text-align: center;
+        }
+
+        .返回首頁按鈕 {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 30px;
+            background: #e9defa;
+            color: #7056a8;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(100, 80, 130, 0.12);
+            transition: 0.2s;
+        }
+
+        .返回首頁按鈕:hover {
+            background: #d9c8f5;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 12px;
+            }
+
+            .玩法卡片 {
+                padding: 20px 16px;
+            }
+
+            .玩法卡片 h3 {
+                font-size: 21px;
+            }
+
+            .玩法介紹 > h2 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="玩法介紹">
+
+        <h2>🎮 遊戲玩法</h2>
+
+        <div class="玩法卡片">
+
+            <h3>🍼 玩法一：食物搶答</h3>
+
+            <p><strong>遊玩人數：</strong>至少 2 人</p>
+
+            <p>
+                從 21 張「聲母 2」卡牌中隨機抽出 1 張。
+                所有玩家同時搶答，最快說出包含該聲母的食物名稱者得分。
+            </p>
+
+            <div class="玩法範例">
+                <p><strong>抽到「ㄅ」：</strong>布丁、白飯</p>
+                <p><strong>抽到「ㄇ」：</strong>麻糬、抹茶</p>
+            </div>
+
+            <p class="玩法提示">
+                💡 反應越快、想到的食物越多，就越容易得分！
+            </p>
+
+        </div>
+
+        <div class="玩法卡片">
+
+            <h3>🧩 玩法二：聲母配對</h3>
+
+            <p><strong>遊玩人數：</strong>至少 2 人</p>
+
+            <p>
+                先從 5 張「聲母 1」卡牌中抽出 1 張，
+                再從 21 張「聲母 2」卡牌中抽出 1 張。
+                玩家必須盡快說出同時符合這兩個聲母的名詞，
+                最快回答正確者得分。
+            </p>
+
+            <div class="玩法範例">
+                <p><strong>抽到「ㄆ」＋「ㄙ」：</strong>披薩、菩薩</p>
+                <p><strong>抽到「ㄓ」＋「ㄗ」：</strong>桌子、製作</p>
+            </div>
+
+            <p class="玩法提示">
+                💡 結合兩張卡牌的聲母，考驗你的詞彙量與聯想能力！
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- 返回首頁按鈕 -->
+    <div class="返回首頁區">
+        <a href="首頁.html" class="返回首頁按鈕">
+            🏠 返回首頁
+        </a>
+    </div>
+
+</body>
+</html>
